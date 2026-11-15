@@ -25,7 +25,6 @@ class NickChanger(commands.Cog):
     @commands.guild_only()
     async def nick(self, ctx: commands.Context):
         """Nickname commands for this server."""
-        await ctx.send_help(ctx.command)
 
     @nick.command(name="change")
     @commands.guild_only()
