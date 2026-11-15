@@ -1,0 +1,6 @@
+[project]
+name = "rcogs"
+version = "0.1.0"
+description = "Red Discord Bot cogs"
+requires-python = ">=3.11,<3.12"
+dependencies = ["Red-DiscordBot>=3.5.24,<3.6"]
