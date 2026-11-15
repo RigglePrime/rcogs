@@ -62,3 +62,22 @@ class NickChanger(commands.Cog):
         """Stop other members from changing your nickname in this server."""
         await self.set_opted_in(ctx.author, False)
         await ctx.send(f"{ctx.author.display_name} has opted out of nickname changes.")
+
+    @nick.command(name="list")
+    @commands.guild_only()
+    async def list_opted_in(self, ctx: commands.Context):
+        """List members who have opted in to nickname changes."""
+        opted_in_users = await self.get_opted_in_users(ctx.guild)
+        if not opted_in_users:
+            await ctx.send("No members have opted in to nickname changes.")
+            return
+
+        members = [ctx.guild.get_member(user_id) for user_id in opted_in_users]
+        members = [member for member in members if member is not None]
+
+        if not members:
+            await ctx.send("No members have opted in to nickname changes.")
+            return
+
+        member_list = ", ".join(member.display_name for member in members)
+        await ctx.send(f"Members who have opted in to nickname changes:\n{member_list}")
